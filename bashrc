@@ -88,4 +88,5 @@ gll2(){
   sudo gcloud builds log --stream $(gcloud builds list --ongoing --limit=1 | sed -n '1!p' | awk '{ print $1 }')
 }
 
+eval $(thefuck --alias)
 alias vim='vim +"set number"'
