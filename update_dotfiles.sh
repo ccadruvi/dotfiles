@@ -1,4 +1,4 @@
-DOTFILES_DIR="$HOME/gitRepos/dotfiles"
+DOTFILES_DIR="$(pwd)"
 rm -rf "$HOME/.bash"
 cp -r "$DOTFILES_DIR/bash" "$HOME/.bash"
 cp -r "$DOTFILES_DIR/bashrc" "$HOME/.bashrc"
