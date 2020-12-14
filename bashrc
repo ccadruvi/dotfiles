@@ -97,3 +97,15 @@ export LS_COLORS
 
 alias di='docker images'
 alias dia='docker images -a'
+
+source <(kubectl completion bash)
+
+DOTFILES_DIR="/home/christian/git/dotfiles"
+rm -rf "$HOME/.bash"
+cp -r "$DOTFILES_DIR/bash" "$HOME/.bash"
+cp -r "$DOTFILES_DIR/bashrc" "$HOME/.bashrc"
+
+for file in $DOTFILES_DIR/bash/aliases/*; do
+        echo "sourcing: $file"
+        source $file;
+done
