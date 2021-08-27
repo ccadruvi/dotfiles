@@ -28,9 +28,21 @@ case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
+function k8s_cluster {
+  kubectl config view -o json --minify | jq -r .contexts[0].context.cluster
+}
+function k8s_namespace {
+  kubectl config view -o json --minify | jq -r .contexts[0].context.namespace
+}
 RETURN="\$(ret=\$?; if [[ \$ret = 0 ]];then echo \"\[\033[01;32m\]✓\";else echo \"\[\033[01;31m\]\$ret\";fi)\[\033[00m\]"
-
-PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] $RETURN \$ "
+#k8s_cluster=$(kubectl config view -o json --minify | jq -r .contexts[0].context.cluster)
+#k8s_namespace=$(kubectl config view -o json --minify | jq -r .contexts[0].context.namespace)
+GREEN="\[\033[01;32m\]"
+BLUE="\[\033[01;34m\]"
+ORANGE="\[\033[01;33m\]"
+WHITE="\[\033[00m\]"
+PROMPT_COMMAND='k8s_cluster=$(k8s_cluster);k8s_namespace=$(k8s_namespace);$(history -a);
+PS1="$GREEN\u@$ORANGE$k8s_cluster:$k8s_namespace$WHITE:$BLUE\w$WHITE $RETURN \$ ";'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -87,8 +99,7 @@ done
 gll2(){
   sudo gcloud builds log --stream $(gcloud builds list --ongoing --limit=1 | sed -n '1!p' | awk '{ print $1 }')
 }
-
-eval $(thefuck --alias)
+eval "$(thefuck --alias)"
 alias vim='vim +"set number"'
 alias powershell='docker container run -it -v $(pwd):/tmp --workdir /tmp --entrypoint bash mcr.microsoft.com/powershell:latest'
 
@@ -97,6 +108,7 @@ export LS_COLORS
 
 alias di='docker images'
 alias dia='docker images -a'
+alias fd='fdfind'
 
 source <(kubectl completion bash)
 
