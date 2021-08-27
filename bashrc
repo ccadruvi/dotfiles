@@ -42,7 +42,7 @@ BLUE="\[\033[01;34m\]"
 ORANGE="\[\033[01;33m\]"
 WHITE="\[\033[00m\]"
 PROMPT_COMMAND='k8s_cluster=$(k8s_cluster);k8s_namespace=$(k8s_namespace);$(history -a);
-PS1="$GREEN\u@$ORANGE$k8s_cluster:$k8s_namespace$WHITE:$BLUE\w$WHITE $RETURN \$ ";'
+PS1="$ORANGE\$k8s_cluster:$k8s_namespace$WHITE:$BLUE\w$WHITE $RETURN \$ ";'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
