@@ -109,6 +109,7 @@ export LS_COLORS
 alias di='docker images'
 alias dia='docker images -a'
 alias fd='fdfind'
+alias fernseh='flatpak run org.gnome.NetworkDisplays'
 
 source <(kubectl completion bash)
 
@@ -117,7 +118,12 @@ rm -rf "$HOME/.bash"
 cp -r "$DOTFILES_DIR/bash" "$HOME/.bash"
 cp -r "$DOTFILES_DIR/bashrc" "$HOME/.bashrc"
 
-for file in $DOTFILES_DIR/bash/aliases/*; do
-        echo "sourcing: $file"
-        source $file;
+# source options aliases completions and functions
+SECTIONS="options aliases completions functions"
+for section in $SECTIONS ; do
+	if [ -d "$HOME/.bash/$section" ] ; then
+		for source_file in $(find "$HOME/.bash/$section" -type f -iname "*.sh" | sort) ; do
+			source "$source_file"
+		done
+	fi
 done
