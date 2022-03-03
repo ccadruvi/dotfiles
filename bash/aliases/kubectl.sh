@@ -1,16 +1,10 @@
+alias k="kubectl"
+alias kg="kubectl get"
+alias kdesc="kubectl describe"
+alias kdel="kubectl delete"
 
-function k(){
-  kubectl $@
-}
+complete -F _complete_alias k
+complete -F _complete_alias kg
+complete -F _complete_alias kdesc
+complete -F _complete_alias kdel
 
-function kg(){
-  k get $@
-}
-
-function kdesc(){
-  k describe $@
-}
-
-function kdel(){
-  k delete $@
-}

@@ -5,16 +5,18 @@ alias gs='git status'
 alias gd='git diff'
 alias gpl='git pull'
 alias gps='git push'
+alias gco='git checkout'
+alias gc='git commit -m'
+alias ga='git add'
 
-function gco() {
-  git checkout $@
-}
-function gc() {
-  git commit -m "$1"
-}
-function ga() {
-  git add $@
-}
+complete -F _complete_alias gs
+complete -F _complete_alias gd
+complete -F _complete_alias gpl
+complete -F _complete_alias gps
+complete -F _complete_alias gco
+complete -F _complete_alias gc
+complete -F _complete_alias ga
+
 
 function gb() {
   # Only output color if the command isn't being piped.

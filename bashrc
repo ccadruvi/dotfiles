@@ -113,10 +113,14 @@ alias fernseh='flatpak run org.gnome.NetworkDisplays'
 
 source <(kubectl completion bash)
 
+
 DOTFILES_DIR="/home/christian/git/dotfiles"
 rm -rf "$HOME/.bash"
 cp -r "$DOTFILES_DIR/bash" "$HOME/.bash"
 cp -r "$DOTFILES_DIR/bashrc" "$HOME/.bashrc"
+cp -r "$DOTFILES_DIR/complete_alias" "$HOME/complete_alias"
+
+source ./complete_alias 
 
 # source options aliases completions and functions
 SECTIONS="options aliases completions functions"
