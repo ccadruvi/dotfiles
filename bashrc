@@ -131,3 +131,5 @@ for section in $SECTIONS ; do
 		done
 	fi
 done
+
+export PATH=$PATH:~/.kubectx
