@@ -133,3 +133,5 @@ for section in $SECTIONS ; do
 done
 
 export PATH=$PATH:~/.kubectx
+# thefuck alias
+export PATH=$PATH:~/.local/bin
