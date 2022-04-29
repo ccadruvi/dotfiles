@@ -34,12 +34,12 @@ function k8s_cluster {
 function k8s_namespace {
   kubectl config view -o json --minify | jq -r .contexts[0].context.namespace
 }
-RETURN="\$(ret=\$?; if [[ \$ret = 0 ]];then echo \"\[\033[01;32m\]✓\";else echo \"\[\033[01;31m\]\$ret\";fi)\[\033[00m\]"
+RETURN="\$(ret=\$?; if [[ \$ret = 0 ]];then echo \"\[\033[01;32m\]✓\";else echo \"\[\033[01;91m\]\$ret\";fi)\[\033[00m\]"
 #k8s_cluster=$(kubectl config view -o json --minify | jq -r .contexts[0].context.cluster)
 #k8s_namespace=$(kubectl config view -o json --minify | jq -r .contexts[0].context.namespace)
-GREEN="\[\033[01;32m\]"
-BLUE="\[\033[01;34m\]"
-ORANGE="\[\033[01;33m\]"
+GREEN="\[\033[01;92m\]"
+BLUE="\[\033[01;94m\]"
+ORANGE="\[\033[01;93m\]"
 WHITE="\[\033[00m\]"
 PROMPT_COMMAND='k8s_cluster=$(k8s_cluster);k8s_namespace=$(k8s_namespace);$(history -a);
 PS1="$ORANGE\$k8s_cluster:$k8s_namespace$WHITE:$BLUE\w$WHITE $RETURN \$ ";'
