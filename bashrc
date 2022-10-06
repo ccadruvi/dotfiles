@@ -114,7 +114,7 @@ alias fernseh='flatpak run org.gnome.NetworkDisplays'
 source <(kubectl completion bash)
 
 
-DOTFILES_DIR="/home/christian/git/dotfiles"
+DOTFILES_DIR="$HOME/git/dotfiles"
 rm -rf "$HOME/.bash"
 cp -r "$DOTFILES_DIR/bash" "$HOME/.bash"
 cp -r "$DOTFILES_DIR/bashrc" "$HOME/.bashrc"
@@ -132,6 +132,11 @@ for section in $SECTIONS ; do
 	fi
 done
 
+# new gcloud gke auth plugin
+USE_GKE_GCLOUD_AUTH_PLUGIN=True
+
 export PATH=$PATH:~/.kubectx
 # thefuck alias
 export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/go/bin
+export GOSRC=~/go/src/dev.azure.com/digitecgalaxus/SystemEngineering
