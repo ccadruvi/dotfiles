@@ -132,6 +132,10 @@ for section in $SECTIONS ; do
 	fi
 done
 
+if [[ -f $HOME/.ssh/azure_devops_christian_cadruvi ]]; then
+  ssh-add  $HOME/.ssh/azure_devops_christian_cadruvi > /dev/null 2>&1
+fi
+
 # new gcloud gke auth plugin
 USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
