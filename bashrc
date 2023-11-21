@@ -30,14 +30,24 @@ esac
 
 function k8s_cluster {
   if command -v kubectl &>/dev/null; then
-    kubectl config view -o json --minify | jq -r .contexts[0].context.cluster
+    current_context=$(kubectl config current-context 2>&1)
+    if [[ $current_context == "error: current-context is not set" ]]; then
+      kubectl config view -o json --minify | jq -r .contexts[0].context.cluster
+    else
+      echo "N/A"
+    fi
   else
     echo "N/A"
   fi
 }
 function k8s_namespace {
   if command -v kubectl &>/dev/null; then
-    kubectl config view -o json --minify | jq -r .contexts[0].context.namespace
+    current_context=$(kubectl config current-context 2>&1)
+    if [[ $current_context == "error: current-context is not set" ]]; then
+      kubectl config view -o json --minify | jq -r .contexts[0].context.namespace
+    else
+      echo "N/A"
+    fi
   else
     echo "N/A"
   fi
