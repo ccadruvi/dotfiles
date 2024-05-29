@@ -124,6 +124,10 @@ alias di='docker images'
 alias dia='docker images -a'
 alias fd='fdfind'
 alias fernseh='flatpak run org.gnome.NetworkDisplays'
+alias ip="ip -c"
+alias ips="ip -c -br addr"
+alias mac="ip -c -br link"
+
 
 if command -v kubectl &>/dev/null; then
   source <(kubectl completion bash)
