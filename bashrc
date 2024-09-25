@@ -152,10 +152,6 @@ for section in $SECTIONS ; do
 	fi
 done
 
-if [[ -f $HOME/.ssh/azure_devops_christian_cadruvi ]]; then
-  ssh-add  $HOME/.ssh/azure_devops_christian_cadruvi > /dev/null 2>&1
-fi
-
 # new gcloud gke auth plugin
 USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
@@ -164,3 +160,14 @@ export PATH=$PATH:~/.kubectx
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/go/bin
 export GOSRC=~/go/src/dev.azure.com/digitecgalaxus/SystemEngineering
+
+if [ -z "$SSH_AUTH_SOCK" ]; then
+   # Check for a currently running instance of the agent
+   RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
+   if [ "$RUNNING_AGENT" = "0" ]; then
+        # Launch a new instance of the agent
+        ssh-agent -s &> $HOME/.ssh/ssh-agent
+   fi
+   eval `cat $HOME/.ssh/ssh-agent` > /dev/null
+   ssh-add $HOME/.ssh/azure_devops_christian_cadruvi 2> /dev/null
+fi
