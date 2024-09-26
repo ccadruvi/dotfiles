@@ -168,6 +168,5 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
         # Launch a new instance of the agent
         ssh-agent -s &> $HOME/.ssh/ssh-agent
    fi
-   eval `cat $HOME/.ssh/ssh-agent` > /dev/null
    ssh-add $HOME/.ssh/azure_devops_christian_cadruvi 2> /dev/null
 fi
