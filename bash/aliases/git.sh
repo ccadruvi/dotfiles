@@ -5,7 +5,6 @@ alias gs='git status'
 alias gd='git diff'
 alias gpl='git pull'
 alias gps='git push'
-alias gco='git checkout'
 alias gc='git commit -m'
 alias ga='git add'
 
@@ -42,4 +41,12 @@ function gbd() {
   for branch in $branchesToDelete; do
     git branch -D "$branch"
   done
+}
+
+function gco() {
+  if [[ "$1" == "mater" ]]; then
+    command git checkout master "${@:2}"
+  else
+    command git checkout "$@"
+  fi
 }
