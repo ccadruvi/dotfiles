@@ -161,4 +161,3 @@ export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/go/bin
 export GOSRC=~/go/src/dev.azure.com/digitecgalaxus/SystemEngineering
 
-ssh-add $HOME/.ssh/azure_devops_christian_cadruvi 2> /dev/null
