@@ -160,4 +160,6 @@ export PATH=$PATH:~/.kubectx
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/go/bin
 export GOSRC=~/go/src/dev.azure.com/digitecgalaxus/SystemEngineering
+export EDITOR=vim
+export KUBE_EDITOR=vim
 
